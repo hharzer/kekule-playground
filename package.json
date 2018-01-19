@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "kekule": "^0.7.6"
+    "kekule": "https://github.com/partridgejiang/Kekule.js.git#editorEnhancement",
   }
 }
