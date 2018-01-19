@@ -1,0 +1,37 @@
+/*Main Menu Bar */
+.K-Chem-Composer .K-Chem-Composer-Chem-Toolbar
+{
+    position: absolute;
+    top: 0;
+    left: 50px;
+}
+.K-Layout-V>.K-Widget, .K-Layout-V>.K-Content
+{
+    display: inline-block;
+}
+
+/* Zoom Keys*/
+.K-Chem-ZoomIn
+{
+    display: block !important;
+}
+.K-Chem-ZoomOut
+{
+    display: block !important;
+}
+.K-Chem-Composer .K-Chem-Composer-Zoom-Toolbar
+{
+    position: absolute;
+    bottom: 450px;
+    right: 10px;
+}
+
+/* Moldraw Canvas Area  - This is usually Dymanically Created but Rachel dont want that*/
+.K-Chem-Composer-Editor-Stage
+{
+  position: absolute;
+  top: 37px;
+  left: 50px !important;
+  bottom: 96px;
+  right: 0px;
+}
