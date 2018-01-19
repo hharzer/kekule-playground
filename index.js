@@ -25,7 +25,6 @@ const editButton = {
 chemComposer.setDimension('600px', '600px')
 chemComposer.setEnableStyleToolbar(true)
   .setEnableOperHistory(true)
-  .setEnableLoadNewFile(true)
   .setAllowCreateNewChild(false) //multiple structures will be false untill we are ready to add that feature
   .setCommonToolButtons(['zoomIn', 'zoomOut']) // create all default common tool buttons
   .setChemToolButtons(['bond', 'atom', 'manipulate', 'erase', 'charge', 'ring'])   // create only chem tool buttons related to molecule
