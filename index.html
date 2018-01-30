@@ -3,11 +3,82 @@
   <head>
     <meta charset="utf-8">
     <title>Testing</title>
+
+    <script type="text/javascript" src="kekule.js/kekule.js"></script>
     <link rel="stylesheet" href="./css/kekule.css">
+    <script>
+    var MySingleElectronAction = Kekule.Editor.createComposerIaControllerActionClass(
+      'Kekule.Editor.ActionComposerSetAttachedMarkerIaControllerSingleElectron',
+      'Single Electron',
+      'Add single electron',
+      'AttachedMarkerIaController',
+      'AttachedMarkerIaController-SingleElectron',
+      {
+        'markerClassName': 'Kekule.ChemMarker.UnbondedElectronSet',
+        'targetClassName': 'Kekule.AbstractAtom',
+        'initialPropValues': {'electronCount': 1}
+      },
+      null, null,
+      'singleElectron'
+    );
+
+    // initialize Composer
+    Kekule.X.domReady(function(){
+      var composer = Kekule.Widget.getWidgetById('composer');
+
+      // bind event
+      Kekule.Widget.getWidgetById('btnSetCustomButtons').on('execute', function(e){
+        var BNS = Kekule.ChemWidget.ComponentWidgetNames;
+        composer.setCommonToolButtons([BNS.undo, BNS.redo, BNS.zoomIn, BNS.zoomOut, BNS.objInspector]).setChemToolButtons([
+          BNS.manipulate,
+          BNS.erase,
+          {'name': 'Custom', 'actionClass': Kekule.Editor.ActionOnComposerAdv,
+            'text': 'Create', 'hint': 'My create button', 'id': 'btnMyCreate', 'htmlClass': 'MYBUTTON',
+            'widget': Kekule.Widget.RadioButton,
+            'attached': [
+            BNS.molBondSingle, BNS.molBondDouble, BNS.molBondTriple,  //only show single, double and triple bounds
+            /*  Hide other bond buttons
+
+             BNS.molBondCloser, BNS.molBondWedgeUp, BNS.molBondWedgeDown,
+             BNS.molRepMethane,
+             BNS.molRepFischer1, BNS.molRepFischer2,
+             BNS.molRepSawhorseStaggered, BNS.molRepSawhorseEclipsed
+             */
+            //{'name': BNS.molAtom, 'actionClass': Kekule.Editor.ActionComposerSetAtomController}
+            BNS.molAtom
+          ]},
+          //BNS.molAtom,
+          BNS.molFormula,
+          BNS.molRing,
+          {
+            'name': BNS.molCharge,
+            'attached': [
+              BNS.molChargeClear,
+              BNS.molChargePositive,
+              BNS.molChargeNegative,
+              BNS.molElectronLonePair,
+              {
+                'name': 'singleElectron', 'actionClass': MySingleElectronAction
+              }
+            ]
+          }
+          // BNS.molCharge,
+          // BNS.textImage
+        ]);
+      });
+      Kekule.Widget.getWidgetById('btnReset').on('execute', function(e){
+        composer.setCommonToolButtons(null).setChemToolButtons(null);
+      });
+    });
+  </script>
   </head>
   <body>
-    <div id="kekule" data-widget="Kekule.Editor.Composer"></div>
-    <script type="text/javascript" src="./node_modules/kekule/dist/kekule.min.js"></script>
-    <script type="text/javascript" src="./index.js"></script>
+    <div id="toolbar" data-widget="Kekule.Widget.ButtonGroup">
+      <button id="btnSetCustomButtons" data-widget="Kekule.Widget.Button" data-text="Set Custom Chem Tools"></button>
+      <button id="btnReset" data-widget="Kekule.Widget.Button" data-text="Reset Chem Tools"></button>
+    </div>
+    <div id="composer" data-widget="Kekule.Editor.Composer"></div>
+
+    <!--<script type="text/javascript" src="./index.js"></script>-->
   </body>
 </html>
