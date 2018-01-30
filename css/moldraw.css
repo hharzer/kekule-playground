@@ -2,8 +2,8 @@
 .K-Chem-Composer .K-Chem-Composer-Chem-Toolbar
 {
     position: absolute;
-    top: 0;
-    left: 50px;
+    top: 0 !important;
+    left: 50px !important;
 }
 .K-Layout-V>.K-Widget, .K-Layout-V>.K-Content
 {
@@ -26,6 +26,13 @@
     right: 10px;
 }
 
+/* Sub Menu Bar */
+.K-Chem-Composer .K-Chem-Composer-Assoc-Toolbar, .K-Chem-Composer .K-Chem-Composer-Style-Toolbar {
+    position: absolute;
+    left: 50px !important;
+    top: 35px !important;
+}
+
 /* Moldraw Canvas Area  - This is usually Dymanically Created but Rachel dont want that*/
 .K-Chem-Composer-Editor-Stage
 {
@@ -34,4 +41,12 @@
   left: 50px !important;
   bottom: 96px;
   right: 0px;
+}
+
+/* Atom ComboBox */
+.K-ComboBox {
+  width: 10em;
+  left: 410px !important;
+  top: 20px !important;
+  display: block !important;
 }
